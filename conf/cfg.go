@@ -25,10 +25,12 @@ func init() {
 	if err != nil {
 		log.Fatalln(err)
 	}
+	log.Printf("config->%v", ServerCfg.ConfigMap)
 }
 
 // Get the corresponding config value of the given key.
 func (cfg *Cfg) Get(key string) string {
+	log.Printf("key: %v, property->%v", key, cfg.ConfigMap[key])
 	if val, ok := cfg.ConfigMap[key]; ok {
 		return val
 	}

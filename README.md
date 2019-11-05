@@ -1,2 +1,2 @@
-# go_photo_gallary
-my go server end application
+# ScratchMaker server-end
+自己写的一个golang web应用

@@ -1,10 +1,10 @@
 package v1
 
 import (
-	"go_photo_gallary/constant"
-	"go_photo_gallary/models"
 	"log"
 	"net/http"
+	"scratch_maker_server/constant"
+	"scratch_maker_server/models"
 
 	"github.com/astaxie/beego/validation"
 	"github.com/gin-gonic/gin"
@@ -14,8 +14,8 @@ import (
 // 添加游戏
 func FrontAddGame(context *gin.Context) {
 	responseCode := constant.INVALID_PARAMS
-	bucketToAdd := models.Bucket{}
-	if err := context.ShouldBindWith(&bucketToAdd, binding.Form); err != nil {
+	gameToAdd := models.Game{}
+	if err := context.ShouldBindWith(&gameToAdd, binding.Form); err != nil {
 		log.Println(err)
 		context.AbortWithStatusJSON(http.StatusBadRequest, gin.H{
 			"code": responseCode,
@@ -26,13 +26,13 @@ func FrontAddGame(context *gin.Context) {
 	}
 
 	validCheck := validation.Validation{}
-	validCheck.Required(bucketToAdd.AuthID, "auth_id").Message("Must have auth id")
-	validCheck.Required(bucketToAdd.Name, "bucket_name").Message("Must have bucket name")
-	validCheck.MaxSize(bucketToAdd.Name, 64, "bucket_name").Message("Bucket name length can not exceed 64")
+
+	// validCheck.Required(gameToAdd.Name, "bucket_name").Message("Must have bucket name")
+	// validCheck.MaxSize(gameToAdd.Name, 64, "bucket_name").Message("Bucket name length can not exceed 64")
 
 	if !validCheck.HasErrors() {
-		if err := models.AddBucket(&bucketToAdd); err != nil {
-			if err == models.BucketExistsError {
+		if err := models.InsertGame(&gameToAdd); err != nil {
+			if err == models.GameExistsError {
 				responseCode = constant.BUCKET_ALREADY_EXIST
 			} else {
 				responseCode = constant.INTERNAL_SERVER_ERROR
@@ -47,7 +47,7 @@ func FrontAddGame(context *gin.Context) {
 	}
 
 	data := make(map[string]string)
-	data["bucket_name"] = bucketToAdd.Name
+	data["bucket_name"] = gameToAdd.Name
 
 	context.JSON(http.StatusOK, gin.H{
 		"code": responseCode,

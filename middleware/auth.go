@@ -1,8 +1,8 @@
 package middleware
 
 import (
-	"go_photo_gallary/constant"
-	"go_photo_gallary/utils"
+	"scratch_maker_server/constant"
+	"scratch_maker_server/utils"
 	"log"
 	"net/http"
 

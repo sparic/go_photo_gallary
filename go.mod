@@ -1,4 +1,4 @@
-module go_photo_gallary
+module scratch_maker_server
 
 go 1.13
 

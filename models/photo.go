@@ -3,11 +3,11 @@ package models
 import (
 	// "bufio"
 	"fmt"
-	"go_photo_gallary/constant"
 	"log"
 	"mime/multipart"
 	"net/http"
 	"os"
+	"scratch_maker_server/constant"
 
 	"github.com/gin-gonic/gin"
 	"github.com/jinzhu/gorm"
@@ -57,7 +57,7 @@ func AddPhoto(photoToAdd *Photo, photoFileHeader *multipart.FileHeader, context 
 		return nil, "", err
 	}
 
-	err = trx.Model(&Bucket{}).Where("id = ?", photoToAdd.BucketID).
+	err = trx.Model(&Game{}).Where("id = ?", photoToAdd.BucketID).
 		Update("size", gorm.Expr("size + ?", 1)).
 		Error
 	if err != nil {

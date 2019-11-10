@@ -1,7 +1,7 @@
 package main
 
 import (
-	"go_photo_gallary/routers"
+	"scratch_maker_server/routers"
 	"net/http"
 	"time"
 )

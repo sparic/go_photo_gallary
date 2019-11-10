@@ -2,7 +2,7 @@ package utils
 
 import (
 	"fmt"
-	constant "go_photo_gallary/constant"
+	constant "scratch_maker_server/constant"
 	"log"
 	"strconv"
 	"time"

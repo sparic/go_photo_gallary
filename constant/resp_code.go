@@ -8,6 +8,7 @@ const (
 	USER_AUTH_ERROR      = 1004
 	USER_AUTH_TIMEOUT    = 1005
 	USER_SIGNOUT_SUCCESS = 1006
+	USER_NOT_EXIST       = 1007
 
 	// JWT related responses
 	JWT_GENERATION_ERROR = 2001
@@ -45,6 +46,7 @@ func init() {
 	Message = make(map[int]string)
 	Message[INVALID_PARAMS] = "Invalid parameters."
 	Message[USER_ALREADY_EXIST] = "User already exists."
+	Message[USER_NOT_EXIST] = "User not exists."
 	Message[USER_ADD_SUCCESS] = "Add user success."
 	Message[USER_AUTH_SUCCESS] = "User authentication success."
 	Message[USER_AUTH_ERROR] = "User authentication fail."

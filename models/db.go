@@ -29,18 +29,18 @@ func init() {
 
 	var err error
 
-	Db, err = gorm.Open("mysql", "root:root@(localhost:3306)/photo_gallery?charset=utf8&parseTime=True&loc=Local")
+	Db, err = gorm.Open("mysql", "root:root@(localhost:3306)/scratch_maker?charset=utf8&parseTime=True&loc=Local")
 	if err != nil {
 		log.Fatalln("Fail to connect database!")
 	}
 	fmt.Printf("database connected!!!")
 
 	Db.SingularTable(true)
-	if !Db.HasTable(&Auth{}) {
-		Db.CreateTable(&Auth{})
+	if !Db.HasTable(&User{}) {
+		Db.CreateTable(&User{})
 	}
-	if !Db.HasTable(&Bucket{}) {
-		Db.CreateTable(&Bucket{})
+	if !Db.HasTable(&Game{}) {
+		Db.CreateTable(&Game{})
 	}
 	if !Db.HasTable(&Photo{}) {
 		Db.CreateTable(&Photo{})
@@ -49,7 +49,7 @@ func init() {
 
 // The base model of all models, including ID & CreatedAt & UpdatedAt.
 type BaseModel struct {
-	ID        uint      `json:"id" gorm:"primary_key;AUTO_INCREMENT" form:"id"`
-	CreatedAt time.Time `json:"created_at" gorm:"default: CURRENT_TIMESTAMP" form:"created_at"`
-	UpdatedAt time.Time `json:"updated_at" gorm:"default: CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP" form:"updated_at"`
+	ID          uint      `json:"id" gorm:"primary_key;AUTO_INCREMENT" form:"id"`
+	CreatedTime time.Time `json:"createdTime" gorm:"default: CURRENT_TIMESTAMP" form:"created_at"`
+	UpdatedTime time.Time `json:"updatedTime" gorm:"default: CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP" form:"updated_at"`
 }

@@ -2,7 +2,7 @@ package v1
 
 import (
 	"fmt"
-	"go_photo_gallary/constant"
+	"scratch_maker_server/constant"
 	"io"
 	"log"
 	"net/http"

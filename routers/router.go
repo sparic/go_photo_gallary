@@ -1,8 +1,8 @@
 package routers
 
 import (
-	v1 "go_photo_gallary/apis/v1"
-	"go_photo_gallary/middleware"
+	v1 "scratch_maker_server/apis/v1"
+	"scratch_maker_server/middleware"
 
 	"github.com/gin-gonic/gin"
 )
@@ -26,15 +26,16 @@ func init() {
 		{
 			userFrontGroup.POST("/register", v1.Register)
 			userFrontGroup.POST("/login", v1.FrontLogin)
-			userFrontGroup.POST("/update", v1.FrontUpdateUser)
+			userFrontGroup.PUT("/update", v1.FrontUpdateUser)
 		}
 		// 后台用户模块
 		userAdminGroup := v1AdminGroup.Group("/user")
 		{
 			userAdminGroup.POST("/login", v1.AdminLogin)
-			userAdminGroup.GET("/list", checkAuthMdw, refreshMdw, v1.ListUser)
+			userAdminGroup.GET("", checkAuthMdw, refreshMdw, v1.ListUser)
 			userAdminGroup.GET("/getOne", checkAuthMdw, refreshMdw, v1.UserDetail)
 			userAdminGroup.PUT("/update", checkAuthMdw, refreshMdw, v1.AdminUpdateUser)
+			userAdminGroup.DELETE("", checkAuthMdw, refreshMdw, v1.AdminDelUser)
 		}
 
 		// 前台游戏模块

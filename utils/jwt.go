@@ -2,8 +2,8 @@
 package utils
 
 import (
-	"go_photo_gallary/conf"
-	"go_photo_gallary/constant"
+	"scratch_maker_server/conf"
+	"scratch_maker_server/constant"
 	"log"
 	"time"
 
